@@ -27,7 +27,7 @@ a = [c[1]*x^0, c[2]*x*(x-1)]
 jump = JumpProcess(x, a, S, χ)
 
 
-parameter_sweep = false
+parameter_sweep = true
 if parameter_sweep
 ## Moment Problem Setup
 m_min, Δm, m_max = 2, 2, 10
@@ -64,7 +64,7 @@ m = m_min
 n = n_min
 nR = nR_max
 bounds, status, time = parameter_sweep_δ(m -> MomentProblem(jump, m; x_scale=[7.0]),
-                                         x0, objs, [m], [n], nT_range, [nR], Tf_range; R = R)
+                                              x0, objs, [m], [n], nT_range, [nR], Tf_range; R = R)
 
 results[("traces", "nT")] = ([bounds, status, time], [[m], [n], nT_range, [nR], Tf_range])
 fig, ax = subplots()
@@ -78,7 +78,7 @@ rM = length(nT_min:ΔnT:nT_max)
 r = 1
 for nT in nT_min:ΔnT:nT_max
     obj = (1,x,nT)
-    bnds = copy(bounds[m,n,nT,nR][obj])#[b[obj][1] for b in bounds[m,n,nT,nR]]
+    bnds = copy(bounds[m,n,nT,nR][obj])
     push!(lns, ax.plot(Tf_range, bnds, color = PyPlot.cm.Reds(0.2 + 0.6*r/rM), marker="o"))
     global r += 1
 end
