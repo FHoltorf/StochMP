@@ -7,13 +7,13 @@ The core of the code resides in the module StochMP which implements routines to 
 * Stoichiometry matrix
 * Reaction propensities 
 * Reaction invariants as defined by a list of dependent species
-* Polynomial inequalities that are feasible on the reachable set of the reaction network
+* Polynomial inequalities that are feasible on the reachable set of the reaction system
 
 characterizing the reaction network under investigation. Note, however, that *only* polynomial problem data is supported, i.e., arrival rates/reaction propensities, drift coefficient and diffusion matrix must be polynomial functions of the system state. 
 
 ### Examples
 
-This repository contains several examples for the use of StochMP for the analysis of stochastic chemical systems. All examples are discussed in detail in our preprint ["Tighter Bounds on transient moments of stochastic chemical systems"](https://arxiv.org/abs/2104.01309) (Holtorf and Barton, 2021). Please refer to the preprint for more background information.
+This repository contains several examples for the use of StochMP for the analysis of stochastic chemical systems. All examples are discussed in detail in our preprint ["Tighter Bounds on transient moments of stochastic chemical systems"](https://arxiv.org/abs/2104.01309) (Holtorf and Barton, 2021). Please refer to the preprint for more background information on the specific applications.
 
 ### How to use this code?
 
@@ -29,7 +29,7 @@ If you would like to use this code or run any of the example code, make sure the
 Moreover, be sure to add the path of StochMP to Julia's LOAD_PATH:
 
 ```julia
-	push!(LOAD_PATH, $PATH_TO_STOCHMP)
+	push!(LOAD_PATH, <PATH_TO_STOCHMP>)
 ```
 
 
