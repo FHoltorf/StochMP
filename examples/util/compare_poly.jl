@@ -1,5 +1,16 @@
 using StochMP, LaTeXStrings, LinearAlgebra, DynamicPolynomials, PyPlot, MathOptInterface, JLD, MosekTools
 
+try readdir("results")
+catch error
+    @warn "created 'results' directory for output files"
+    mkdir("results")
+end
+try readdir("figures")
+catch error
+    @warn "created 'figures' directory for output figures"
+    mkdir("figures")
+end
+
 function trajectory_bounds_poly(mp, x0, objs, r, nT, Tf_range; R=[])
     # basis function selection
     bounds, status, time = Dict(), Dict(), Dict()
@@ -13,8 +24,8 @@ function trajectory_bounds_poly(mp, x0, objs, r, nT, Tf_range; R=[])
         for Tf in Tf_range
             if Tf == 0
                 bounds[obj] = [obj[1] == 1 ? x0[idx]*ones(2) : 0.0]
-                status[obj] = [obj[1] == 1 ? [MathOptInterface.FEASIBLE_POINT, MathOptInterface.FEASIBLE_POINT] :
-                                              MathOptInterface.FEASIBLE_POINT]
+                status[obj] = [obj[1] == 1 ? [1,1] :
+                                              1]
                 time[obj] = [obj[1] == 1 ? 0.0*ones(2) : 0.0]
             else
                 T = range(Tf/nT, stop=Tf, length=nT)

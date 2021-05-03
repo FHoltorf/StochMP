@@ -1,5 +1,16 @@
 using StochMP, LaTeXStrings, LinearAlgebra, DynamicPolynomials, PyPlot, MathOptInterface, JLD, MosekTools
 
+try readdir("results")
+catch error
+    @warn "created 'results' directory for output files"
+    mkdir("results")
+end
+try readdir("figures")
+catch error
+    @warn "created 'figures' directory for output figures"
+    mkdir("figures")
+end
+
 function trajectory_bounds_δ(mp, x0, objs, n, nT, nR, Tf_range; R=[])
     # basis function selection
     if isempty(R)

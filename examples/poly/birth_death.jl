@@ -75,16 +75,3 @@ ax.set_xlabel("time [s]")
 ax.set_ylabel("molecular count [-]")
 fig.savefig("figures\\birth_death_mean.pdf")
 display(fig)
-
-#=
-lns = []
-fig, ax = subplots()
-push!(lns, ax.plot(Tf_range, bounds_weak[objs_weak[2]], marker="o", color="magenta", label=L"V(A)^{L/ U}_{weak}"))
-push!(lns, ax.plot(Tf_range, bounds_poly[objs_poly[2]], marker="o", color="red", label=L"V(A)^{L/ U}_{poly}"))
-push!(lns, ax.plot(trange, [x[1] for x in var_MC], color = "k", label=L"V(A)_{SSA}"))
-ax.legend([ln[1] for ln in lns], [ln[1].get_label() for ln in lns])
-ax.set_xlabel("time [s]")
-ax.set_ylabel("molecular count [-]")
-fig.savefig("figures\\birth_death_variance.pdf")
-display(fig)
-=#

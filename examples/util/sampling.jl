@@ -1,5 +1,11 @@
 using DifferentialEquations, ProgressMeter, JLD
 
+try readdir("results")
+catch error
+    @warn "created 'results' directory for output files"
+    mkdir("results")
+end
+
 function KMC(x0, c, reac_S, net_S, Tf_range, n_samples, trange; moments=[])
       kinetics = MassActionJump(c, reac_S, net_S, scale_rates=false)
       prob = DiscreteProblem(x0,(0,Tf_range[end]))
